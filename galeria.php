@@ -15,9 +15,25 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/galeria.css">
   <link rel="stylesheet" href="./css/style.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script defer src="./js/app.js"></script>
 </head>
 
-<body>
+<?php
+$background = "white"; // predvolena farba pozadia biela
+$color = "#000"; // predvolena farba textu cierna
+if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
+{ 
+    if($_COOKIE["theme"] == "dark") { // ak je cookie theme dark
+        $background = "#151718"; // pozadie tmave
+        $color = "#D1C5BE"; // text biely
+    }
+} else { // ak neni cookie theme nastaveny 
+    setcookie("theme", "light", time() + (86400 * 30), "/"); // nastavenie default cookie na light a expiracny cas 30 dni
+}
+?>
+
+<body style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
   <header>
     <!-- navbar-->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
@@ -30,16 +46,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto nav-underline">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Domov</a>
+              <a class="nav-link" href="index.php">Domov</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="otazky.html">Otázky</a>
+              <a class="nav-link" href="otazky.php">Otázky</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Galéria</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="kontakt.html">Kontakt</a>
+              <a class="nav-link" href="kontakt.php">Kontakt</a>
+            </li>
+            <li class="switch-container">
+              <label class="switch">
+					     <input type="checkbox" id="toggleTheme" <?php if($_COOKIE["theme"] == "dark") { echo "checked"; }?>> <!--dark mode checkbox-->
+					     <span class="slider round"></span>
+				      </label>
             </li>
           </ul>
         </div>
@@ -48,6 +70,9 @@
   </header>
   <!-- nadpis-->
   <main>
+  <!-- darkmode JS link--> 
+  <script src="./js/darkmode.js"></script>
+
     <div class="image-bar2">
       <div class="image-overlay2"></div>
       <div class="image-bar-text">
@@ -153,16 +178,16 @@
     <div class="py-4 container fw-medium">
       <ul class="nav justify-content-center ">
         <li class="nav-item">
-          <a href="index.html" class="nav-link px-2 text-light ">Domov</a>
+          <a href="index.php" class="nav-link px-2 text-light ">Domov</a>
         </li>
         <li class="nav-item">
-          <a href="otazky.html" class="nav-link px-2 text-light ">Otázky</a>
+          <a href="otazky.php" class="nav-link px-2 text-light ">Otázky</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-light ">Galéria</a>
         </li>
         <li class="nav-item">
-          <a href="kontakt.html" class="nav-link px-2 text-light ">Kontakt</a>
+          <a href="kontakt.php" class="nav-link px-2 text-light ">Kontakt</a>
         </li>
       </ul>
       <hr class="hr">
@@ -170,8 +195,6 @@
     </div>
 
   </footer>
-
-  <script src="./js/app.js"></script>
 </body>
 
 </html>

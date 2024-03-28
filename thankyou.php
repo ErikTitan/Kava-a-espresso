@@ -14,9 +14,25 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer src="./js/app.js"></script>
 </head>
 
-<body class="d-flex flex-column h-100">
+<?php
+$background = "white"; // predvolena farba pozadia biela
+$color = "#000"; // predvolena farba textu cierna
+if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
+{ 
+    if($_COOKIE["theme"] == "dark") { // ak je cookie theme dark
+        $background = "#151718"; // pozadie tmave
+        $color = "#D1C5BE"; // text biely
+    }
+} else { // ak neni cookie theme nastaveny 
+    setcookie("theme", "light", time() + (86400 * 30), "/"); // nastavenie default cookie na light a expiracny cas 30 dni
+}
+?>
+
+<body class="d-flex flex-column h-100" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
     <header>
         <!-- navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: rgb(119, 107, 93);">
@@ -29,13 +45,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto nav-underline">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Domov</a>
+                            <a class="nav-link" href="index.php">Domov</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="otazky.html">Otázky</a>
+                            <a class="nav-link" href="otazky.php">Otázky</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="galeria.html">Galéria</a>
+                            <a class="nav-link" href="galeria.php">Galéria</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Kontakt</a>
@@ -46,11 +62,14 @@
         </nav>
     </header>
     <main class="flex-shrink-0 position-absolute top-50 start-50 translate-middle w-100">
+     <!-- darkmode JS link--> 
+    <script src="./js/darkmode.js"></script>
+
         <div class=" justify-content-center align-items-center">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="custom-form p-5 text-center">
-                        <h1 class="form-title mb-4">Ďakujeme!</h1>
+                    <div class="custom-form p-5 text-center" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>" >
+                        <h1 class="form-title mb-4" style = "color: <?php echo $color;?>">Ďakujeme!</h1>
                         <p class="lead">Ďakujeme vám za vyplnenie formulára. Čoskoro sa vám ozveme.</p>
                         <p>Pre ďalšie otázky nás môžete kontaktovať:</p>
                         <p class="mb-1"><a href="mailto:info@dobrakava.com" style="text-decoration: none; color: #5e3c28;">info@dobrakava.com</a></p>
@@ -70,13 +89,13 @@
         <div class="py-4 container fw-medium ">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link px-2 text-light ">Domov</a>
+                    <a href="index.php" class="nav-link px-2 text-light ">Domov</a>
                 </li>
                 <li class="nav-item">
-                    <a href="otazky.html" class="nav-link px-2 text-light ">Otázky</a>
+                    <a href="otazky.php" class="nav-link px-2 text-light ">Otázky</a>
                 </li>
                 <li class="nav-item">
-                    <a href="galeria.html" class="nav-link px-2 text-light ">Galéria</a>
+                    <a href="galeria.php" class="nav-link px-2 text-light ">Galéria</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link px-2 text-light ">Kontakt</a>
@@ -87,8 +106,6 @@
         </div>
 
     </footer>
-
-    <script src="./js/app.js"></script>
 </body>
 
 </html>

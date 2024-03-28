@@ -14,9 +14,25 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/style.css">
-</head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script defer src="./js/app.js"></script>
 
-<body>
+</head>
+<?php
+$background = "white"; // predvolena farba pozadia biela
+$color = "#000"; // predvolena farba textu cierna
+if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
+{ 
+    if($_COOKIE["theme"] == "dark") { // ak je cookie theme dark
+        $background = "#151718"; // pozadie tmave
+        $color = "#D1C5BE"; // text biely
+    }
+} else { // ak neni cookie theme nastaveny 
+    setcookie("theme", "light", time() + (86400 * 30), "/"); // nastavenie default cookie na light a expiracny cas 30 dni
+}
+?>
+
+<body style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
   <header>
     <!-- navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -29,16 +45,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto nav-underline">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Domov</a>
+              <a class="nav-link" href="index.php">Domov</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Otázky</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="galeria.html">Galéria</a>
+              <a class="nav-link" href="galeria.php">Galéria</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="kontakt.html">Kontakt</a>
+              <a class="nav-link" href="kontakt.php">Kontakt</a>
+            </li>
+            <li class="switch-container">
+              <label class="switch">
+					     <input type="checkbox" id="toggleTheme" <?php if($_COOKIE["theme"] == "dark") { echo "checked"; }?>> <!--dark mode checkbox-->
+					     <span class="slider round"></span>
+				      </label>
             </li>
           </ul>
         </div>
@@ -47,6 +69,9 @@
   </header>
 
   <main>
+  <!-- darkmode JS link--> 
+  <script src="./js/darkmode.js"></script>
+
     <!-- obrazok bar-->
 
     <div class="image-bar">
@@ -56,21 +81,22 @@
         <p class="lead fw-normal">Preskúmajte svet kávy, otázka po otázke!</p>
       </div>
     </div>
+    
 
     <!-- 2 obrazky-->
     <div class="container my-5">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="card">
+      <div class="row" >
+        <div class="col-lg-6"> 
+          <div class="card" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             <img src="./img/typy_zrn.jpg" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Rôzne druhy kávových zŕn</h5>
+            <div class="card-body" >
+              <h5 class="card-title" >Rôzne druhy kávových zŕn</h5>
               <p class="card-text">Dozviete sa o rôznych druhoch kávových zŕn a ich jedinečných charakteristikách.</p>
             </div>
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             <img src="./img/coffee_brewing.jpg" alt="">
             <div class="card-body">
               <h5 class="card-title">Metódy prípravy kávy</h5>
@@ -81,13 +107,14 @@
         </div>
       </div>
     </div>
+    
     <!-- akordeon-->
     <div class="container accordion my-5" id="coffeeAccordion">
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="question1">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
+        <h2 class="accordion-header" id="question1" >
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer1"
-            aria-expanded="true" aria-controls="answer1">
+            aria-expanded="true" aria-controls="answer1" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             Aké sú rôzne druhy kávových zŕn?
           </button>
         </h2>
@@ -99,10 +126,10 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
         <h2 class="accordion-header" id="question2">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer2"
-            aria-expanded="false" aria-controls="answer2">
+            aria-expanded="false" aria-controls="answer2" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             V čom sa líši espresso od bežnej kávy?
           </button>
         </h2>
@@ -114,10 +141,10 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
         <h2 class="accordion-header" id="question3">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer3"
-            aria-expanded="false" aria-controls="answer3">
+            aria-expanded="false" aria-controls="answer3" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             Ako by mala byť káva skladovaná, aby si zachovala čerstvosť?
           </button>
         </h2>
@@ -129,10 +156,10 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
         <h2 class="accordion-header" id="question4">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer4"
-            aria-expanded="false" aria-controls="answer3">
+            aria-expanded="false" aria-controls="answer3" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             Ktorý krajiny sú najväčšími producentmi kávy?
           </button>
         </h2>
@@ -143,10 +170,10 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
         <h2 class="accordion-header" id="question5">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer5"
-            aria-expanded="false" aria-controls="answer5">
+            aria-expanded="false" aria-controls="answer5" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             Aké sú rôzne stupne praženia kávy?
           </button>
         </h2>
@@ -157,10 +184,10 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
         <h2 class="accordion-header" id="question6">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer6"
-            aria-expanded="false" aria-controls="answer6">
+            aria-expanded="false" aria-controls="answer6" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             Aký je rozdiel medzi Cappuccinom a Latte?
           </button>
         </h2>
@@ -171,10 +198,10 @@
         </div>
       </div>
 
-      <div class="accordion-item">
+      <div class="accordion-item" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
         <h2 class="accordion-header" id="question7">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer7"
-            aria-expanded="false" aria-controls="answer7">
+            aria-expanded="false" aria-controls="answer7" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             Ako dlho treba variť kávu v French Presse?
           </button>
         </h2>
@@ -195,16 +222,16 @@
     <div class="py-4 container fw-medium">
       <ul class="nav justify-content-center ">
         <li class="nav-item">
-          <a href="index.html" class="nav-link px-2 text-light ">Domov</a>
+          <a href="index.php" class="nav-link px-2 text-light ">Domov</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-light ">Otázky</a>
         </li>
         <li class="nav-item">
-          <a href="galeria.html" class="nav-link px-2 text-light ">Galéria</a>
+          <a href="galeria.php" class="nav-link px-2 text-light ">Galéria</a>
         </li>
         <li class="nav-item">
-          <a href="kontakt.html" class="nav-link px-2 text-light ">Kontakt</a>
+          <a href="kontakt.php" class="nav-link px-2 text-light ">Kontakt</a>
         </li>
       </ul>
       <hr class="hr">
@@ -213,7 +240,6 @@
 
   </footer>
 
-  <script src="./js/app.js"></script>
 </body>
 
 </html>

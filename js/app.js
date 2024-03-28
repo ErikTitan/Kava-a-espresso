@@ -18,6 +18,7 @@ window.addEventListener('scroll', () => {
 /* clearnutie localStorage pre optrebu debugovania
 localStorage.clear()
 */
+
 /* Zobrazi cookie banner */
 function zobrazCookieBanner() {
   let cookieBanner = document.getElementById("cb-cookie-banner");
@@ -47,7 +48,6 @@ function inicializujCookieBanner() {
 // Priradenie hodnot do window
 window.onload = inicializujCookieBanner();
 window.cb_skryCookieBanner = skryCookieBanner;
-
 
 
 // transition pre uvitaci text
