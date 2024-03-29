@@ -36,6 +36,7 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
     <!-- navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container">
+        <p>.</p>
         <a class="navbar-brand" href="#"><img src="./img/logo.png" height="40px" width="40px" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
