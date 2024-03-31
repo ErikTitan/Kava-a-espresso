@@ -35,31 +35,10 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
 <body class="d-flex flex-column h-100" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
     <header>
         <!-- navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: rgb(119, 107, 93);">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="./img/logo.png" height="40px" width="40px" alt=""></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto nav-underline">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Domov</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="otazky.php">Otázky</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="galeria.php">Galéria</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Kontakt</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php
+    $page = 'thankyou.php';
+    include './components/header.php';
+    ?>
     </header>
     <main class="flex-shrink-0 position-absolute top-50 start-50 translate-middle w-100">
      <!-- darkmode JS link--> 
