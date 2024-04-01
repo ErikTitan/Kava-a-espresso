@@ -187,24 +187,7 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
 
   <footer>
 
-    <div class="py-4 container fw-medium">
-      <ul class="nav justify-content-center ">
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-light ">Domov</a>
-        </li>
-        <li class="nav-item">
-          <a href="otazky.php" class="nav-link px-2 text-light ">Otázky</a>
-        </li>
-        <li class="nav-item">
-          <a href="galeria.php" class="nav-link px-2 text-light ">Galéria</a>
-        </li>
-        <li class="nav-item">
-          <a href="kontakt.p" class="nav-link px-2 text-light ">Kontakt</a>
-        </li>
-      </ul>
-      <hr class="hr">
-      <p class="text-center text-light py-2">&copy; 2023 Vytvoril: Erik Sháněl</p>
-    </div>
+    <?php include './components/footer.php';?>
 
   </footer>
 
