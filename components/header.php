@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark <?php if ($page == 'thankyou.php') echo 'sticky-top'; else echo 'fixed-top'?>" <?php if ($page == 'thankyou.php') echo 'style="background-color: rgb(119, 107, 93);"' ?>>
+<nav class="navbar navbar-expand-lg navbar-dark <?php if ($page == 'thankyou.php' || $page == 'login.php') echo 'sticky-top'; else echo 'fixed-top'?>" <?php if ($page == 'thankyou.php' || $page == 'login.php') echo 'style="background-color: rgb(119, 107, 93);"' ?>>
     <div class="container">
         <a class="navbar-brand" href="#"><img src="./img/logo.png" height="40px" width="40px" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -49,5 +49,25 @@
                 </li>
             </ul>
         </div>
+    </div>
+    <div>
+        <ul>
+            <?php
+                if (isset($_SESSION['userid'])) 
+                {
+            ?>
+            <li><a href="#"><?php echo $_SESSION["useruid"]; ?></a></li>
+            <li><a href="includes/logout.inc.php">Odhlásiť sa</a></li>
+            <?php
+                }
+                else
+                {
+            ?>
+            <li><a href="#">Registrácia</a></li>
+            <li><a href="#">Prihlásenie</a></li>
+            <?php
+                }
+            ?>
+        </ul>
     </div>
 </nav>
