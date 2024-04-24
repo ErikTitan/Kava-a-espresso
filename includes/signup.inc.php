@@ -15,5 +15,5 @@ if(isset($_POST['submit'])) {
     $signup->signupUser();
 
     //vrateniena stranku
-    header("location:../index.php?error=none");
+    header("location:../prihlasenie.php?error=none");
 }

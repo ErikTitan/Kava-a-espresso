@@ -14,5 +14,5 @@ if(isset($_POST['submit'])) {
     $login->loginUser();
 
     //vrateniena stranku
-    header("location:../index.php?error=none");
+    header("location:../prihlasenie.php?error=none");
 }

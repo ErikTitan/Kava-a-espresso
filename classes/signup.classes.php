@@ -9,9 +9,15 @@ class Signup extends Dbh{
 
         if (!$stmt->execute(array($uid, $hashedPwd, $email))) {
             $stmt = null;
-               header("location: ../index.php?error=stmtfailed");
+               header("location: ../prihlasenie.php?error=stmtfailed");
            exit();
         }
+        else {
+            // Start session after successful registration
+            session_start();
+            $_SESSION['userid'] = $this->connect()->lastInsertId(); // Assuming users_id is AUTO_INCREMENT
+            $_SESSION['useruid'] = $uid;}
+            
         $stmt = null;
     }
 
@@ -22,7 +28,7 @@ class Signup extends Dbh{
 
         if (!$stmt->execute(array($uid,$email))) {
             $stmt = null;
-               header("location: ../index.php?error=stmtfailed");
+               header("location: ../prihlasenie.php?error=stmtfailed");
            exit();
         }
 

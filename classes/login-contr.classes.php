@@ -13,7 +13,7 @@ class LoginContr extends Login {
     //vypis errorov
     public function loginUser() {
         if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../prihlasenie.php?error=emptyinput");
             exit();
         }
         $this->getUser($this->uid, $this->pwd) ;

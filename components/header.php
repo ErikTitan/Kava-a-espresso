@@ -1,47 +1,70 @@
-<nav class="navbar navbar-expand-lg navbar-dark <?php if ($page == 'thankyou.php' || $page == 'login.php') echo 'sticky-top'; else echo 'fixed-top'?>" <?php if ($page == 'thankyou.php' || $page == 'login.php') echo 'style="background-color: rgb(119, 107, 93);"' ?>>
-    <div class="container">
-        <a class="navbar-brand" href="#"><img src="./img/logo.png" height="40px" width="40px" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto nav-underline">
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($page == 'index.php')
-                        echo 'active'; ?>"
-                        href="<?php if ($page == 'index.php')
-                            echo '#';
-                        else
-                            echo 'index.php'; ?>">Domov</a>
+<nav class="navbar navbar-expand-lg navbar-dark <?php if ($page == 'thankyou.php' || $page == 'login.php')
+    echo 'sticky-top';
+else
+    echo 'fixed-top' ?>"
+    <?php if ($page == 'thankyou.php' || $page == 'login.php')
+    echo 'style="background-color: rgb(119, 107, 93);"' ?>>
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="./img/logo.png" height="40px" width="40px" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($page == 'index.php')
+    echo 'active'; ?>" href="<?php if ($page == 'index.php')
+          echo '#';
+      else
+          echo 'index.php'; ?>">Domov</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($page == 'otazky.php')
-                        echo 'active'; ?>"
-                        href="<?php if ($page == 'otazky.php')
-                            echo '#';
-                        else
-                            echo 'otazky.php'; ?>">Otázky</a>
+                        echo 'active'; ?>" href="<?php if ($page == 'otazky.php')
+                              echo '#';
+                          else
+                              echo 'otazky.php'; ?>">Otázky</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($page == 'galeria.php')
-                        echo 'active'; ?>"
-                        href="<?php if ($page == 'galeria.php')
-                            echo '#';
-                        else
-                            echo 'galeria.php'; ?>">Galéria</a>
+                        echo 'active'; ?>" href="<?php if ($page == 'galeria.php')
+                              echo '#';
+                          else
+                              echo 'galeria.php'; ?>">Galéria</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($page == 'kontakt.php')
-                        echo 'active'; ?>"
-                        href="<?php if ($page == 'kontakt.php')
-                            echo '#';
-                        else
-                            echo 'kontakt.php'; ?>">Kontakt</a>
+                        echo 'active'; ?>" href="<?php if ($page == 'kontakt.php')
+                              echo '#';
+                          else
+                              echo 'kontakt.php'; ?>">Kontakt</a>
                 </li>
+                <?php
+                if (isset($_SESSION['userid'])) {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($page == 'login.php')
+                            echo 'active'; ?>" href="<?php if ($page == 'login.php')
+                                  echo '#';
+                              else
+                                  echo 'prihlasenie.php'; ?>"><?php echo $_SESSION["useruid"];
+                                    ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="includes/logout.inc.php">Odhlásiť sa</a>
+                    </li>
+                    <?php
+                } else {
+                    ?>
+                    <li class="nav-item "><a class="nav-link <?php if ($page == 'login.php')
+                        echo 'active'; ?>" href="prihlasenie.php">Registrácia</a></li>
+                    <?php
+                }
+                ?>
                 <li class="switch-container">
                     <label class="switch">
-                        <input type="checkbox" id="toggleTheme" <?php if ($_COOKIE["theme"] == "dark")  {
+                        <input type="checkbox" id="toggleTheme" <?php if ($_COOKIE["theme"] == "dark") {
                             echo "checked";
                         } ?>> <!--dark mode checkbox-->
                         <span class="slider round"></span>
@@ -49,25 +72,5 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <div>
-        <ul>
-            <?php
-                if (isset($_SESSION['userid'])) 
-                {
-            ?>
-            <li><a href="#"><?php echo $_SESSION["useruid"]; ?></a></li>
-            <li><a href="includes/logout.inc.php">Odhlásiť sa</a></li>
-            <?php
-                }
-                else
-                {
-            ?>
-            <li><a href="#">Registrácia</a></li>
-            <li><a href="#">Prihlásenie</a></li>
-            <?php
-                }
-            ?>
-        </ul>
     </div>
 </nav>
