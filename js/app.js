@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 // nacitanie premennych'
 const nav = document.querySelector('.navbar');
 const transition = document.querySelector('.text-show');
@@ -104,13 +105,36 @@ function showImgContent(e) {
 document.addEventListener('mousemove', showImgContent);
 
 
-/* formular */
-
-const form = document.getElementById('myForm');
-form.addEventListener('submit', function (event) {
-  if (!form.checkValidity()) {
-    event.preventDefault();
-    event.stopPropagation();
+/* formulare */
+if (window.location.href.includes('kontakt.php')) {
+  const kontaktForm = document.getElementById('kontaktForm');
+  kontaktForm.addEventListener('submit', function(event) {
+      if (!kontaktForm.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+      }
+      kontaktForm.classList.add('was-validated');
+  });
+}
+if (window.location.href.includes('prihlasenie.php')) {
+const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(event) {
+        if (!loginForm.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        loginForm.classList.add('was-validated');
+    });
   }
-  form.classList.add('was-validated');
+  if (window.location.href.includes('prihlasenie.php')) {
+    const myForm = document.getElementById('myForm');
+    myForm.addEventListener('submit', function(event) {
+        if (!myForm.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        myForm.classList.add('was-validated');
+    });
+  }
 });
+

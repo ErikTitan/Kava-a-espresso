@@ -5,6 +5,7 @@ session_start();
 <html lang="en">
 
 <head>
+  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zaverečný_Projekt</title>
@@ -61,7 +62,7 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
         <div class="col-md-8">
           <div class="custom-form p-5" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
             <h1 class="form-title fw-semi-bold text-center mb-4" style = "color: <?php echo $color;?>">Napíšte nám</h1>
-            <form id="myForm" action="thankyou.php" method="POST" class="row g-3 needs-validation" novalidate>
+            <form id="kontaktForm" action="thankyou.php" method="POST" class="row g-3 needs-validation" novalidate>
               <div class="col-md-6">
                 <label for="meno" class="form-label" style = "color: <?php echo $color;?>">Meno</label>
                 <input type="text" class="form-control" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>" id="meno" name="meno" required>
