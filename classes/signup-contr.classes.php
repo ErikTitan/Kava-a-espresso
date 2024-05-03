@@ -6,6 +6,7 @@ class SignupContr extends Signup {
     private $pwd;
     private $pwdRepeat;
     private $email;
+    private $cleanUid;
 
     public function __construct($uid, $pwd, $pwdRepeat, $email) {
         $this->uid = $uid;
@@ -36,13 +37,16 @@ class SignupContr extends Signup {
             header("location: ../prihlasenie.php?reg_error=Používateľské meno už existuje");
             exit();
         }
-        $this->setUser($this->uid, $this->pwd, $this->email) ;
+        //odstranenie medzier z mena
+        $this->cleanUid = str_replace(' ', '', $this->uid);
+        //odoslanie do signup.classes.php
+        $this->setUser($this->cleanUid, $this->pwd, $this->email);
     }
     
-    // spravne meno error handler
+    // nepodporovane znaky error handler
     private function invalidUid() {
         $result = false;
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)) {
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->cleanUid)) {
             $result = false;
         }
         else {
@@ -95,9 +99,10 @@ class SignupContr extends Signup {
         return $result;
     }
 
-    // kontrola ci uz existuje user
+    // zabrane meno error handler
     private function uidTakenCheck() {
         $result = false;
+        // checkUser classa z signup.classes.php
         if (!$this->checkUser($this->uid, $this->email)) {
             $result = false;
         }

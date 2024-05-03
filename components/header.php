@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark <?php if ($page == 'thankyou.php' || $page == 'login.php')
+<nav class="navbar navbar-expand-lg navbar-dark <?php if ($page == 'thankyou.php' || $page == 'login.php' ||  $page == 'recepty.php')
     echo 'sticky-top';
 else
     echo 'fixed-top' ?>"
-    <?php if ($page == 'thankyou.php' || $page == 'login.php')
+    <?php if ($page == 'thankyou.php' || $page == 'login.php' ||  $page == 'recepty.php')
     echo 'style="background-color: rgb(119, 107, 93);"' ?>>
         <div class="container">
             <a class="navbar-brand" href="#"><img src="./img/logo.png" height="40px" width="40px" alt=""></a>

@@ -13,9 +13,16 @@ class Signup extends Dbh{
            exit();
         }
         else {
+            // Fetchnutie uid
+            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE users_uid = ?');
+            $stmt->execute([$uid]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // nastavenie sessions
             session_start();
-            $_SESSION['userid'] = $this->connect()->lastInsertId();
-            $_SESSION['useruid'] = $uid;}
+            $_SESSION['userid'] = $user['users_id'];
+            $_SESSION['useruid'] = $user['users_uid'];
+        }
             
         $stmt = null;
     }

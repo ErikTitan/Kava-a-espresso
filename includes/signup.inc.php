@@ -6,7 +6,6 @@ if(isset($_POST['submit'])) {
     $pwdRepeat = $_POST['pwdrepeat'];
     $email = $_POST['email'];
 
-    // SignupContr class
     include "../classes/config.php";
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";

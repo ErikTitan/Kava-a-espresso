@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 
 <head>
-  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+  <meta http-equiv="Cache-Control" content="no-cache">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zaverečný_Projekt</title>
