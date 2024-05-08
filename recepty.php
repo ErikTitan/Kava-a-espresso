@@ -64,7 +64,8 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
                 </select>
               </div>
               <div class="col-md-12">
-                <label for="water_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo vody (ml)</label>
+                <label for="water_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo vody
+                  (ml)</label>
                 <input type="number" class="form-control"
                   style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>" id="water_amount"
                   name="water_amount" required>
@@ -73,7 +74,8 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
                 </div>
               </div>
               <div class="col-md-12">
-                <label for="coffee_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo kávy (g)</label>
+                <label for="coffee_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo kávy
+                  (g)</label>
                 <input type="number" class="form-control"
                   style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>" id="coffee_amount"
                   name="coffee_amount" required>
@@ -101,19 +103,50 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
             </form>
           </div>
         </div>
-      </div>  
+      </div>
       <!-- zobrazenie receptov  -->
       <div class="row justify-content-center mt-5">
-    <div class="col-lg-8">
-        <div class="recipe-display p-5" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+        <?php
+
+        if (isset($_SESSION['userid'])) {
+          echo "User ID: " . $_SESSION['userid'];
+        } else {
+          echo "User ID session variable is not set.";
+        }
+        ?>
+        <div class="col-lg-8">
+          <div class="recipe-display p-5"
+            style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
             <h2 class="text-center mb-4" style="color: <?php echo $color; ?>">Váš Nový Recept</h2>
             <div id="displayRecipe">
+              <?php
+              include "./classes/config.php";
+              include "./classes/recipe.classes.php";
+              include "./classes/recipe-contr.classes.php";
+              $userId = $_SESSION['userid'];
+              $recipeObj = new Recipe();
+              $getrecipes = $recipeObj->getRecipe($userId);
+              if ($getrecipes) {
+                echo '<div class="recipe-list">';
+                foreach ($getrecipes as $recipe) {
+                  echo '<div class="recipe-item">';
+                  echo '<h3>' . $recipe['recipe_name'] . '</h3>';
+                  echo '<p><strong>Roast Type:</strong> ' . $recipe['roast_type'] . '</p>';
+                  echo '<p><strong>Water Amount:</strong> ' . $recipe['water_amount'] . ' ml</p>';
+                  echo '<p><strong>Coffee Amount:</strong> ' . $recipe['coffee_amount'] . ' g</p>';
+                  echo '</div>';
+                }
+                echo '</div>';
+              } else {
+                echo '<p>No recipes found.</p>';
+              }
+              ?>
             </div>
+          </div>
         </div>
-    </div>
-</div>
       </div>
-      </main>
+    </div>
+  </main>
   <!--footer-->
   <footer>
 

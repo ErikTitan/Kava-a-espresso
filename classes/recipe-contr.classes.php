@@ -36,7 +36,7 @@ class RecipeContr extends Recipe {
     private function recipeTakenCheck() {
         $result = false;
         // checkRecipe classa z recipe.classes.php
-        if (!$this->checkRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->recipe_name)) {
+        if (!$this->checkRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->recipe_name, $this->userId)) {
             $result = false;
         }
         else {
