@@ -13,6 +13,6 @@ if(isset($_POST['submit'])) {
     // error handler
     $signup->signupUser();
 
-    //vrateniena stranku
-    header("location:../index.php");
+    //vrateniena stranku recepty.php
+    header("location:../recepty.php");
 }

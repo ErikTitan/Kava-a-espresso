@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,20 +16,11 @@ session_start();
   <link rel="stylesheet" href="./css/style.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script defer src="./js/app.js"></script>
-
 </head>
+
 <?php
-$background = "white"; // predvolena farba pozadia biela
-$color = "#000"; // predvolena farba textu cierna
-if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
-{ 
-    if($_COOKIE["theme"] == "dark") { // ak je cookie theme dark
-        $background = "#151718"; // pozadie tmave
-        $color = "#D1C5BE"; // text biely
-    }
-} else { // ak neni cookie theme nastaveny 
-    setcookie("theme", "light", time() + (86400 * 30), "/"); // nastavenie default cookie na light a expiracny cas 30 dni
-}
+session_start();
+include './components/darkmode.php';
 ?>
 
 <body style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">

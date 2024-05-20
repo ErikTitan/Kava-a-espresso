@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,17 +20,8 @@ session_start();
 </head>
 
 <?php
-$background = "white"; // predvolena farba pozadia biela
-$color = "#000"; // predvolena farba textu cierna
-if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
-{ 
-    if($_COOKIE["theme"] == "dark") { // ak je cookie theme dark
-        $background = "#151718"; // pozadie tmave
-        $color = "#D1C5BE"; // text biely
-    }
-} else { // ak neni cookie theme nastaveny 
-    setcookie("theme", "light", time() + (86400 * 30), "/"); // nastavenie default cookie na light a expiracny cas 30 dni
-}
+session_start();
+include './components/darkmode.php';
 ?>
 
 <body style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
@@ -42,15 +30,25 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
     <?php
     $page = 'recepty.php';
     include './components/header.php';
+    include "./classes/config.php";
+    include "./classes/recipe.classes.php";
+    include "./classes/recipe-contr.classes.php";
     ?>
   </header>
 
   <main>
    <!-- darkmode JS link--> 
   <script src="./js/darkmode.js"></script>
+  <div class="image-bar2">
+      <div class="image-overlay3"></div>
+      <div class="image-bar-text">
+        <h1 class="display-3 fw-normal text-capitalize">Vytvorte si vlastný recept</h1>
+        <p class="lead fw-normal">Máte otázky ohľadom kávy? Neváhajte a kontaktujte nás.</p>
+      </div>
+    </div>
     <div class="container my-5 py-5">
         <div class="row justify-content-center">
-        <!-- Coffee Recipe Section -->
+        <!-- Volba receptu -->
         <div class="col-lg-4">
           <div class="custom-form p-5" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
             <h1 class="form-title fw-semi-bold text-center mb-4" style="color: <?php echo $color; ?>">Vytvoriť Recept</h1>
@@ -64,8 +62,7 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
                 </select>
               </div>
               <div class="col-md-12">
-                <label for="water_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo vody
-                  (ml)</label>
+                <label for="water_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo vody (ml)</label>
                 <input type="number" class="form-control"
                   style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>" id="water_amount"
                   name="water_amount" required>
@@ -107,7 +104,6 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
       <!-- zobrazenie receptov  -->
       <div class="row justify-content-center mt-5">
         <?php
-
         if (isset($_SESSION['userid'])) {
           echo "User ID: " . $_SESSION['userid'];
         } else {
@@ -120,9 +116,6 @@ if(isset($_COOKIE["theme"])) // kontrola ci je nastaveny cookie theme
             <h2 class="text-center mb-4" style="color: <?php echo $color; ?>">Váš Nový Recept</h2>
             <div id="displayRecipe">
               <?php
-              include "./classes/config.php";
-              include "./classes/recipe.classes.php";
-              include "./classes/recipe-contr.classes.php";
               $userId = $_SESSION['userid'];
               $recipeObj = new Recipe();
               $getrecipes = $recipeObj->getRecipe($userId);

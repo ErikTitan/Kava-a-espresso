@@ -136,5 +136,15 @@ const loginForm = document.getElementById('loginForm');
         myForm.classList.add('was-validated');
     });
   }
+  if (window.location.href.includes('recepty.php')) {
+    const recipeForm = document.getElementById('recipeForm');
+    recipeForm.addEventListener('submit', function(event) {
+        if (!recipeForm.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        recipeForm.classList.add('was-validated');
+    });
+  }
 });
 

@@ -34,7 +34,7 @@ class SignupContr extends Signup {
             exit();
         }
         if ($this->uidTakenCheck() == false) {
-            header("location: ../prihlasenie.php?reg_error=Používateľské meno už existuje");
+            header("location: ../prihlasenie.php?reg_error=Používateľské meno alebo email už existujú");
             exit();
         }
         //odstranenie medzier z mena
@@ -99,7 +99,7 @@ class SignupContr extends Signup {
         return $result;
     }
 
-    // zabrane meno error handler
+    // zabrane meno alebo heslo error handler
     private function uidTakenCheck() {
         $result = false;
         // checkUser classa z signup.classes.php

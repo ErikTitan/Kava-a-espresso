@@ -12,6 +12,6 @@ if(isset($_POST['submit'])) {
     // error handler
     $login->loginUser();
 
-    //vrateniena stranku
-    header("location:../index.php");
+    //vrateniena stranku recepy.php
+    header("location:../recepty.php");
 }
