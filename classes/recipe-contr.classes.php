@@ -18,7 +18,24 @@ class RecipeContr extends Recipe {
 
     //vypis errorov
     public function addRecipe() {
-        if ($this->recipeTakenCheck() == false) {
+        if ($this->recipeTakenCheck() == true) {
+            header("location: ../recepty.php?rec_error=Recept už existuje");
+            exit();
+        }
+        if ($this->checkRecipeLength() == false) {
+            header("location: ../recepty.php?rec_error=Príliš dlhý názov");
+            exit();
+        }
+        if ($this->checkRoastType() == false) {
+            header("location: ../recepty.php?rec_error=Nesprávný typ prazenia");
+            exit();
+        }
+        
+        //odoslanie do recipe.classes.php
+        $this->setRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->recipe_name, $this->userId);
+    }
+    public function editRecipe() {
+        if ($this->recipeNameTakenCheck() == true) {
             header("location: ../recepty.php?rec_error=Recept už existuje");
             exit();
         }
@@ -31,24 +48,19 @@ class RecipeContr extends Recipe {
             exit();
         }
 
-
-        //odoslanie do recipe.classes.php
-        $this->setRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->recipe_name, $this->userId);
     }
-    
 
-
-    // existujuci recept error handler
+    // existujuci recept error handler (pre pridanie receptu)
     private function recipeTakenCheck() {
-        $result = false;
         // checkRecipe classa z recipe.classes.php
-        if (!$this->checkRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->userId, $this->recipe_name)) {
-            $result = false;
-        }
-        else {
-            $result = true;
-        }
-        return $result;
+        return $this->checkRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->userId, $this->recipe_name);
+       
+    }
+    // existujuce meno error handler (pre edit receptu)
+    private function recipeNameTakenCheck() {
+        // checkRecipeName classa z recipe.classes.php
+        return $this->checkRecipeName($this->roast_type, $this->water_amount, $this->coffee_amount, $this->userId, $this->recipe_name);
+       
     }
 
     // dlzka nazvu error handler
