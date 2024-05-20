@@ -37,17 +37,48 @@ include './components/darkmode.php';
   </header>
 
   <main>
-   <!-- darkmode JS link--> 
+  <!-- darkmode JS link--> 
   <script src="./js/darkmode.js"></script>
   <div class="image-bar2">
-      <div class="image-overlay3"></div>
-      <div class="image-bar-text">
-        <h1 class="display-3 fw-normal text-capitalize">Vytvorte si vlastný recept</h1>
-        <p class="lead fw-normal">Máte otázky ohľadom kávy? Neváhajte a kontaktujte nás.</p>
-      </div>
+    <div class="image-overlay4"></div>
+    <div class="image-bar-text">
+      <h1 class="display-3 fw-normal text-capitalize">Vytvorte si vlastný recept</h1>
+      <p class="lead fw-normal">Vytvorte a sledujte svoje vlastné kávové recepty. Urobte si kávu presne podľa svojich predstáv.</p>
     </div>
-    <div class="container my-5 py-5">
-        <div class="row justify-content-center">
+  </div>
+  <div class="container my-5 py-5">
+    <div class="row justify-content-center">
+      <!-- zobrazenie receptov  -->
+      <div class="col-lg-4">
+        <div class="custom-form p-5 mb-4" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+            <h2 class="form-title fw-semi-bold text-center mb-4" style="color: <?php echo $color; ?>">Vaše Recepty</h2>
+            <div id="displayRecipe">
+              <?php
+              $userId = $_SESSION['userid'];
+              $recipeObj = new Recipe();
+              $getrecipes = $recipeObj->getRecipe($userId);
+              if ($getrecipes) {
+                echo '<div class="recipe-list">';
+                foreach ($getrecipes as $recipe) {
+                  echo '<div class="recipe-item p-3 mb-3 border rounded" style="background-color: #f8f9fa;">';
+                  echo '<h4>' . $recipe['recipe_name'] . '</h4>';
+                  echo '<p><strong>Typ praženia:</strong> ' . $recipe['roast_type'] . '</p>';
+                  echo '<p><strong>Množstvo vody:</strong> ' . $recipe['water_amount'] . ' ml</p>';
+                  echo '<p><strong>Množstvo kávy:</strong> ' . $recipe['coffee_amount'] . ' g</p>';
+                  // edit
+                  echo '<a href="recipe-edit.classes.php?id=' . $recipe['recipe_id'] . '" class="btn btn-outline-dark btn-sm me-2"><i class="bi bi-pencil"></i> Upraviť</a>';
+                  // remove
+                  echo '<a href="#" class="btn btn-outline-dark btn-sm"><i class="bi bi-trash"></i> Odstrániť</a>';
+                  echo '</div>';
+                }
+                echo '</div>';
+              } else {
+                echo '<p>No recipes found.</p>';
+              }
+              ?>
+            </div>
+          </div>
+        </div>
         <!-- Volba receptu -->
         <div class="col-lg-4">
           <div class="custom-form p-5" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
@@ -71,8 +102,7 @@ include './components/darkmode.php';
                 </div>
               </div>
               <div class="col-md-12">
-                <label for="coffee_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo kávy
-                  (g)</label>
+                <label for="coffee_amount" class="form-label" style="color: <?php echo $color; ?>">Množstvo kávy (g)</label>
                 <input type="number" class="form-control"
                   style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>" id="coffee_amount"
                   name="coffee_amount" required>
@@ -98,43 +128,6 @@ include './components/darkmode.php';
                 <button type="submit" name="submit" class="btn btn-primary-custom btn-lg">Pridať Recept</button>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-      <!-- zobrazenie receptov  -->
-      <div class="row justify-content-center mt-5">
-        <?php
-        if (isset($_SESSION['userid'])) {
-          echo "User ID: " . $_SESSION['userid'];
-        } else {
-          echo "User ID session variable is not set.";
-        }
-        ?>
-        <div class="col-lg-8">
-          <div class="recipe-display p-5"
-            style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
-            <h2 class="text-center mb-4" style="color: <?php echo $color; ?>">Váš Nový Recept</h2>
-            <div id="displayRecipe">
-              <?php
-              $userId = $_SESSION['userid'];
-              $recipeObj = new Recipe();
-              $getrecipes = $recipeObj->getRecipe($userId);
-              if ($getrecipes) {
-                echo '<div class="recipe-list">';
-                foreach ($getrecipes as $recipe) {
-                  echo '<div class="recipe-item">';
-                  echo '<h3>' . $recipe['recipe_name'] . '</h3>';
-                  echo '<p><strong>Roast Type:</strong> ' . $recipe['roast_type'] . '</p>';
-                  echo '<p><strong>Water Amount:</strong> ' . $recipe['water_amount'] . ' ml</p>';
-                  echo '<p><strong>Coffee Amount:</strong> ' . $recipe['coffee_amount'] . ' g</p>';
-                  echo '</div>';
-                }
-                echo '</div>';
-              } else {
-                echo '<p>No recipes found.</p>';
-              }
-              ?>
-            </div>
           </div>
         </div>
       </div>

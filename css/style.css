@@ -185,6 +185,7 @@ input:checked + .slider:before {
   height: 400px;
 }
 
+
 .image-bar .image-overlay {
   position: absolute;
   top: 0;
@@ -223,6 +224,20 @@ input:checked + .slider:before {
   filter: brightness(0.6);
   background-attachment: fixed;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image-bar2 .image-overlay4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/coffe_recipe.jpg);
+  filter: brightness(0.6);
+  background-attachment: fixed;
+  background-position: center 65%;
   background-repeat: no-repeat;
   background-size: cover;
 }

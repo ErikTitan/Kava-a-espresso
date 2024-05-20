@@ -37,7 +37,7 @@ class Recipe extends Dbh{
     }
     //vypis vsetkych pouzivatelovych receptov
     public function getRecipe($userId){
-        $stmt = $this->connect()->prepare('SELECT roast_type, water_amount, coffee_amount, recipe_name FROM coffee_recipes WHERE users_id = ?;');
+        $stmt = $this->connect()->prepare('SELECT recipe_id, roast_type, water_amount, coffee_amount, recipe_name FROM coffee_recipes WHERE users_id = ?;');
         
         if (!$stmt->execute([$userId])) {
             $stmt = null;
