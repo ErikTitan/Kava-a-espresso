@@ -8,7 +8,7 @@ if(isset($_SESSION['userid'])){
 
     $dbhconnect = new Dbh();
 
-
+    //vymazanie receptu podla id
     function deleteData($dbhconnect,$id) {
         try {
             $sql = "DELETE FROM coffee_recipes WHERE recipe_id = ?;";

@@ -34,6 +34,8 @@ class RecipeContr extends Recipe {
         //odoslanie do recipe.classes.php
         $this->setRecipe($this->roast_type, $this->water_amount, $this->coffee_amount, $this->recipe_name, $this->userId);
     }
+
+    // uprava existujucich receptov
     public function editRecipe() {
         if ($this->recipeNameTakenCheck() == true) {
             header("location: ../recepty.php?rec_error=Recept už existuje");

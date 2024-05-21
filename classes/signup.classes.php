@@ -22,6 +22,7 @@ class Signup extends Dbh{
             session_start();
             $_SESSION['userid'] = $user['users_id'];
             $_SESSION['useruid'] = $user['users_uid'];
+            $_SESSION['admin'] = $user['admin']; // admin status
         }
             
         $stmt = null;

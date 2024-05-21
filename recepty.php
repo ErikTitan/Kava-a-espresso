@@ -48,6 +48,9 @@ include './components/darkmode.php';
   </div>
   <div class="container my-5 py-5">
     <div class="row justify-content-center">
+    <div class="col-12 text-center mb-5">
+        <h1 class="display-4 fw-bold">Vitajte, <?= $_SESSION['useruid']; ?>!</h1>
+      </div>
       <!-- zobrazenie receptov  -->
       <div class="col-lg-4">
         <div class="custom-form p-5 mb-4" style="background-color: <?= $background; ?>; color: <?= $color; ?>">
@@ -103,7 +106,7 @@ include './components/darkmode.php';
                 </div>
                 <?php
               } else {
-                echo '<p>No recipes found.</p>';
+                echo '<p>Neboli nájdené žiadne recepty.</p>';
               }
               ?>
             </div>

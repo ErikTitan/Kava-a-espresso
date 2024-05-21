@@ -15,8 +15,10 @@ if(isset($_SESSION['userid'])){
     $dbhconnect = new Dbh();
 
     $recipe = new RecipeContr($roastType, $waterAmount, $coffeeAmount, $recipeName, $userId);
+    // volanie edit recipe z recipe-contr.classes.php
     $recipe->editRecipe();
 
+    // uprava receptu v databaze
     function updateRecipe($dbhconnect, $recipeId, $roastType, $waterAmount, $coffeeAmount, $recipeName) {
         $stmt = $dbhconnect->connect()->prepare('UPDATE coffee_recipes SET roast_type = ?, water_amount = ?, coffee_amount = ?, recipe_name = ? WHERE recipe_id = ?;');
         

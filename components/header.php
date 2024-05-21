@@ -30,11 +30,17 @@
                         <a class="nav-link" href="includes/logout.inc.php">Odhlásiť sa</a>
                     </li>
                     <?php
+                    if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($page == 'admin.php') echo 'active'; ?>" href="admin.php">Admin</a>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                    <?php
                 } else {
                     ?>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($page == 'recepty.php') echo 'active'; ?>" href="<?php if ($page == 'recepty.php') echo '#'; else echo 'prihlasenie.php'; ?>">Recepty</a>
-                    </li>
                     <li class="nav-item ">
                         <a class="nav-link <?php if ($page == 'login.php') echo 'active'; ?>" href="prihlasenie.php">Registrácia</a>
                     </li>
