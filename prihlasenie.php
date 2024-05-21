@@ -94,7 +94,7 @@ include './components/darkmode.php';
         <!-- prihlasenie -->
         <div class="col-lg-4">
           <div class="custom-form p-5" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
-            <h1 class="form-title fw-semi-bold text-center mb-4" style="color: <?php echo $color; ?>">Prihlasenie</h1>
+            <h1 class="form-title fw-semi-bold text-center mb-4" style="color: <?php echo $color; ?>">Prihlásenie</h1>
             <form id="loginForm" action="includes/login.inc.php" method="post" class="row g-3 needs-validation"
               novalidate>
               <div class="col-md-12">

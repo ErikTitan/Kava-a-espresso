@@ -89,7 +89,28 @@ images.forEach(image => {
   observer.observe(image);
 });
 
+//recepty editovacie okno
+if (window.location.href.includes('recepty.php')) {
+document.querySelectorAll('.edit-recipe').forEach(button => {
+  button.addEventListener('click', function (event) {
+    event.preventDefault();
+    const recipeItem = this.closest('.recipe-item');
+    recipeItem.querySelector('.recipe-details').style.display = 'none';
+    recipeItem.querySelector('.edit-form').style.display = 'block';
+  });
+});
+}
 
+if (window.location.href.includes('recepty.php')) {
+document.querySelectorAll('.cancel-edit').forEach(button => {
+  button.addEventListener('click', function (event) {
+    event.preventDefault();
+    const recipeItem = this.closest('.recipe-item');
+    recipeItem.querySelector('.edit-form').style.display = 'none';
+    recipeItem.querySelector('.recipe-details').style.display = 'block';
+  });
+});
+}
 
 /* galeria - obrazky efekt*/
 const imgContent = document.querySelectorAll('.img-content-hover');
